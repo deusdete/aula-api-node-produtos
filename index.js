@@ -11,7 +11,7 @@ server.use(express.json())
 
 server.use(router)
 
-server.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+server.use('/', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 const post = process.env.PORT || 3000
 
