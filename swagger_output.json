@@ -1,0 +1,268 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API simples com um CRUD para produtos",
+    "description": "API criada e disponibilizada para o desafio do curso de programação na ETEPPF por Deusdete Ferreira",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/produtos",
+  "tags": [],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/produtos": {
+      "get": {
+        "tags": [
+          "Produto"
+        ],
+        "description": "Endpoint para returnar todos os produtos",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Produto"
+            },
+            "description": "Produtos returnado com sucesso"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Produto"
+        ],
+        "description": "Endpoint para crair um novo produto",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Dados para cria um novo produto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddProduto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AddProdutoSucess"
+            },
+            "description": "Produto cadastrado com sucesso!"
+          }
+        }
+      }
+    },
+    "/produtos/{id}": {
+      "get": {
+        "tags": [
+          "Produto"
+        ],
+        "description": "Endpoint para returnar um produto pelo id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Produto"
+            },
+            "description": "Produto returnado com sucesso"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Produto"
+        ],
+        "description": "Endpoint para atualziar um produto pelo id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Dados para atualziar um produto pelo id",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddProduto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/UpdateProdutoSucess"
+            },
+            "description": "Produto atualizado com sucesso"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Produto"
+        ],
+        "description": "Endpoint para apagar um produto pelo id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Produto"
+            },
+            "description": "Produto apagado com sucesso!"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Produto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "f4b799f4-4917-42bb-a286-a551098bccfb"
+        },
+        "nome": {
+          "type": "string",
+          "example": "Notebook Lenovo Ideapad "
+        },
+        "descricao": {
+          "type": "string",
+          "example": "Notebook Lenovo Ideapad S145 81V70008BR - AMD Ryzen 5-3500U 8GB 256GB SSD 15,6” Windows 10"
+        },
+        "valor": {
+          "type": "string",
+          "example": "3.599,10"
+        }
+      },
+      "required": [
+        "id",
+        "nome",
+        "descricao"
+      ]
+    },
+    "AddProduto": {
+      "type": "object",
+      "properties": {
+        "nome": {
+          "type": "string",
+          "example": "Notebook Lenovo Ideapad "
+        },
+        "descricao": {
+          "type": "string",
+          "example": "Notebook Lenovo Ideapad S145 81V70008BR - AMD Ryzen 5-3500U 8GB 256GB SSD 15,6” Windows 10"
+        },
+        "valor": {
+          "type": "string",
+          "example": "3.599,10"
+        }
+      },
+      "required": [
+        "nome",
+        "descricao"
+      ]
+    },
+    "AddProdutoSucess": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "f4b799f4-4917-42bb-a286-a551098bccfb"
+        },
+        "nome": {
+          "type": "string",
+          "example": "Notebook Lenovo Ideapad "
+        },
+        "descricao": {
+          "type": "string",
+          "example": "Notebook Lenovo Ideapad S145 81V70008BR - AMD Ryzen 5-3500U 8GB 256GB SSD 15,6” Windows 10"
+        },
+        "valor": {
+          "type": "string",
+          "example": "3.599,10"
+        }
+      },
+      "required": [
+        "id",
+        "nome",
+        "descricao"
+      ]
+    },
+    "UpdateProduto": {
+      "type": "object",
+      "properties": {
+        "nome": {
+          "type": "string",
+          "example": "Notebook Lenovo "
+        },
+        "descricao": {
+          "type": "string",
+          "example": "S145 81V70008BR - AMD Ryzen 5-3500U 8GB 256GB SSD 15,6” Windows 10"
+        },
+        "valor": {
+          "type": "string",
+          "example": "3.000,10"
+        }
+      },
+      "required": [
+        "nome",
+        "descricao"
+      ]
+    },
+    "UpdateProdutoSucess": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "f4b799f4-4917-42bb-a286-a551098bccfb"
+        },
+        "nome": {
+          "type": "string",
+          "example": "Notebook Lenovo "
+        },
+        "descricao": {
+          "type": "string",
+          "example": "S145 81V70008BR - AMD Ryzen 5-3500U 8GB 256GB SSD 15,6” Windows 10"
+        },
+        "valor": {
+          "type": "string",
+          "example": "3.000,10"
+        }
+      },
+      "required": [
+        "id",
+        "descricao"
+      ]
+    }
+  }
+}
